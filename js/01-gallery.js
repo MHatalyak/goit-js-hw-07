@@ -32,17 +32,24 @@ function handleClick(event) {
     const largeImageURL = target.dataset.source;
     lightboxInstance = basicLightbox.create(
       `
-		<img src="${largeImageURL}">
-	`
+      <img src="${largeImageURL}">
+    `,
+      {
+        onShow: () => {
+          document.addEventListener("keydown", handleKeyDown);
+        },
+        onClose: () => {
+          document.removeEventListener("keydown", handleKeyDown);
+        },
+      }
     );
     lightboxInstance.show();
-    document.addEventListener("keydown", handleKeyDown);
   }
 }
+
 function handleKeyDown(event) {
   if (event.key === "Escape") {
     lightboxInstance.close();
-    document.removeEventListener("keydown", handleKeyDown);
   }
 }
 

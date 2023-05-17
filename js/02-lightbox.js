@@ -20,23 +20,3 @@ const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,
 });
-
-listOfGallary.addEventListener("click", handleClick);
-
-function handleClick(event) {
-  event.preventDefault();
-  const target = event.target;
-  if (target.classList.contains("gallery__image")) {
-    lightbox.open(target.parentElement);
-  }
-}
-
-document.addEventListener("keydown", handleKeyDown);
-
-function handleKeyDown(event) {
-  if (event.key === "Escape") {
-    lightbox.close();
-  }
-}
-
-console.log(galleryItems);
